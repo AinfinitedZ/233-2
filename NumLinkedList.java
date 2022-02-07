@@ -14,10 +14,6 @@ interface NumList{
 }
 
 public class NumLinkedList implements NumList{
-    // the head of the whole linked list
-    private LLNode head;
-    // the tail of the whole linked list
-    private LLNode tail;
     // attributes of linked list
     private final int capacity = Integer.MAX_VALUE;
     private int elements = 0;
@@ -42,8 +38,6 @@ public class NumLinkedList implements NumList{
             newNode.setNext(dummyTail);
             dummyTail.setPrevious(newNode);
             dummyHead.setNext(newNode);
-            this.head = newNode;
-            this.tail = newNode;
             elements++;
         }
     }
@@ -57,20 +51,20 @@ public class NumLinkedList implements NumList{
     }
 
     public void add(double value){
-        this.addIfNull(value);
-        LLNode newNode = new LLNode(value);
-        newNode.setPrevious(tail);
-        newNode.setNext(dummyTail);
-        tail.setNext(newNode);
-        dummyTail.setPrevious(tail);
-        tail = tail.getNext();
-        elements++;
+        if(this.size() == 0){
+            this.addIfNull(value);
+        } else {
+            LLNode newNode = new LLNode(value);
+            dummyTail.getPrevious().setNext(newNode);
+            dummyTail.setPrevious(newNode);
+            elements++;
+        }
     }
 
     public void insert(int i, double value){
-        LLNode ptr = head;
-        if(i < elements){
-            for(int j = 0; j < i; j++) {
+        LLNode ptr = dummyHead.getNext();
+        if(i < this.size()){
+            for(int j = 0; j < i - 1; j++) {
                 ptr = ptr.getNext();
             }
             LLNode newNode = new LLNode(value);
@@ -78,24 +72,37 @@ public class NumLinkedList implements NumList{
             newNode.setNext(ptr.getNext());
             ptr.getNext().setPrevious(newNode);
             ptr.setNext(newNode);
-            if(newNode.getNext().getValue() == null) tail = tail.getNext();
+            elements++;
         }
         else {this.add(value);}
-        elements++;
     }
 
     public void remove(int i){
-        if(i < elements){
-            tail = tail.getPrevious();
-            tail.setNext(dummyTail);
-            dummyTail.setPrevious(tail);
+        if(i == 0 && this.size() != 0) {
+            dummyHead.setNext(dummyHead.getNext().getNext());
+            elements--;
+        } else {
+            if(i < elements - 1 && this.size() != 0) {
+                LLNode ptr = dummyHead.getNext();
+                for (int j = 0; j < i - 1; j++) {
+                    ptr = ptr.getNext();
+                }
+                LLNode ptrNext = ptr.getNext().getNext();
+                ptr.setNext(ptrNext);
+                ptrNext.setPrevious(ptr);
+                elements--;
+            } else if(i == elements - 1 && this.size() != 0){
+                LLNode tail = dummyTail.getPrevious().getPrevious();
+                tail.setNext(dummyTail);
+                dummyTail.setPrevious(tail);
+                elements--;
+            }
         }
-        elements--;
     }
 
     public boolean contains(double value) {
-        LLNode ptr = head;
-        while(ptr.getValue() != null){
+        LLNode ptr = dummyHead.getNext();
+        for(int i = 0; i < this.size(); i++){
             if (ptr.getValue() == value) return true;
             ptr = ptr.getNext();
         }
@@ -106,7 +113,7 @@ public class NumLinkedList implements NumList{
         if(this.size() < i+1){
             throw new NotValidIndexException("This index is not valid");
         }
-        LLNode ptr = head;
+        LLNode ptr = dummyHead.getNext();
         for(int j = 0; j < i; j++){
             ptr = ptr.getNext();
         }
@@ -120,12 +127,11 @@ public class NumLinkedList implements NumList{
         if(this.size() != otherList.size()){
             return false;
         }
-        LLNode ptr = head;
+        LLNode ptr = dummyHead.getNext();
         for(int i = 0; i < this.size(); i++){
             try {
-                if(ptr.getValue() != otherList.lookup(i)){
-                    return false;
-                }
+                if(ptr.getValue() != otherList.lookup(i)) return false;
+                ptr = ptr.getNext();
             } catch (NotValidIndexException e) {
                 System.out.println("This index is not valid");
             }
@@ -134,7 +140,7 @@ public class NumLinkedList implements NumList{
     }
 
     public void removeDuplicates(){
-        LLNode ptr = head;
+        LLNode ptr = dummyHead.getNext();
         NumLinkedList newList = new NumLinkedList();
         while(ptr.getValue() != null){
             if(!newList.contains(ptr.getValue())) newList.add(ptr.getValue());
@@ -142,33 +148,39 @@ public class NumLinkedList implements NumList{
     }
 
     public String toString(){
-        LLNode ptr = head;
+        if(this.size() == 0) return "";
+        LLNode ptr = dummyHead.getNext();
         StringBuilder str = new StringBuilder();
-        while(ptr.getValue() != null){
+        for(int i = 0; i < this.size(); i++){
             str.append(ptr.getValue());
+            str.append(" ");
             ptr = ptr.getNext();
         }
         return str.toString();
     }
 
     public boolean isSorted(){
-        LLNode ptr = head, ptrNext = head.getNext();
-        while(ptrNext.getValue() != null){
-            if(!Objects.equals(ptr.getValue(), ptrNext.getValue())){
-                return false;
-            }
-            else {
-                ptr = ptr.getNext();
-                ptrNext = ptrNext.getNext();
+        if(this.size() != 0) {
+            LLNode ptr = dummyHead.getNext();
+            LLNode ptrNext = dummyHead.getNext().getNext();
+            while (ptrNext.getValue() != null) {
+                if (!Objects.equals(ptr.getValue(), ptrNext.getValue())) {
+                    return false;
+                } else {
+                    ptr = ptr.getNext();
+                    ptrNext = ptrNext.getNext();
+                }
             }
         }
         return true;
     }
 
     public void reverse(){
-        LLNode ptr = tail, ptrNext = tail.getPrevious();
-        while(ptrNext.getValue() != null){
+        if(this.size() != 0) {
+            LLNode ptr = dummyTail.getPrevious(), ptrNext = dummyTail.getPrevious().getPrevious();
+            while (ptrNext.getValue() != null) {
 
+            }
         }
     }
 }
