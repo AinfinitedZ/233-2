@@ -3,9 +3,9 @@
  * @author dxl746
  */
 public class LLNode{
-    private Double value;
-    private LLNode next;
-    private LLNode previous;
+    protected Double value;
+    protected LLNode next;
+    protected LLNode previous;
 
     public LLNode(Double value){
         this.value = value;

@@ -24,6 +24,26 @@ Finish testing the size(), add(), insert(), contains().
 
 Finish testing the lookup(), equals(), toString(). removeDuplicates() need to be rewrite. 
 
+2/8 11:26
+
+Finish isSorted(). 
+
+2/8 11:52
+
+Finish testing isSorted()
+
+2/8 12:45
+
+TODO: reverse() throws nullPointerException
+
+2/8 15:30 
+
+Finish and test union() successfully. 
+
+2/8 17:19
+
+TODO: reverse() and removeDuplicate()
+
 
 
 
