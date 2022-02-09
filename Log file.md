@@ -44,7 +44,13 @@ Finish and test union() successfully.
 
 TODO: reverse() and removeDuplicate()
 
+2/9 12:11 
 
+Finish testing reverse(). Problem comes from the wrong wording. (use if instead of while in a loop)
+
+2/9 12:56
+
+Finish test removeDuplicates(). Begin working on numArrayLists.
 
 
 

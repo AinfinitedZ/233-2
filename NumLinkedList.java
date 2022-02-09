@@ -70,7 +70,9 @@ public class NumLinkedList implements NumList {
             this.addIfNull(value);
         } else {
             LLNode newNode = new LLNode(value);
-            dummyTail.getPrevious().setNext(newNode);
+            newNode.previous = dummyTail.previous;
+            newNode.next = dummyTail;
+            newNode.getPrevious().setNext(newNode);
             dummyTail.setPrevious(newNode);
             elements++;
         }
@@ -156,7 +158,21 @@ public class NumLinkedList implements NumList {
     }
 
     public void removeDuplicates() {
-
+        if(this.size() > 1){
+            LLNode ptr = dummyHead.next;
+            while(ptr.next != null){
+                LLNode qtr = ptr.next;
+                while(qtr != null){
+                    if(Objects.equals(ptr.value, qtr.value)) {
+                        qtr.previous.next = qtr.next;
+                        qtr.next.previous = qtr.previous;
+                        elements--;
+                    }
+                    qtr = qtr.next;
+                }
+                ptr = ptr.next;
+            }
+        }
     }
 
     public String toString() {
@@ -187,17 +203,24 @@ public class NumLinkedList implements NumList {
     }
 
     public void reverse() {
-        LLNode prev = null;
-        LLNode temp = null;
-        LLNode curr = dummyHead.next;
-        if (curr != null){
-            temp = curr.next;
-            curr.next = prev;
-            curr.previous = temp;
-            prev = curr;
-            curr = temp;
+        if(this.size() > 1) {
+            LLNode prev = null;
+            LLNode temp = null;
+            LLNode curr = dummyHead.next;
+            LLNode tail = dummyHead.next;
+            LLNode head = dummyTail.previous;
+            while (curr != null) {
+                temp = curr.next;
+                curr.next = prev;
+                curr.previous = temp;
+                prev = curr;
+                curr = temp;
+            }
+            dummyHead.next = head;
+            head.previous = dummyHead;
+            dummyTail.previous = tail;
+            tail.next = dummyTail;
         }
-        dummyHead.next = prev;
     }
 
     public static NumLinkedList union(NumList list1, NumList list2) {
