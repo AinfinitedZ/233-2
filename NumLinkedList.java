@@ -1,34 +1,8 @@
 import java.util.Objects;
 
-interface NumList {
-    int size();                                             // return the number of elements of NumList
 
-    int capacity();                                         // return the capacity of NumList
 
-    void add(double value);                                 // add a value to the end of NumList.
-
-    void insert(int i, double value);                       // inserts a element before i-th element. using 0 as start.
-
-    void remove(int i);                                     // remove the i-th element. do nothing if i > size
-
-    double lookup(int i) throws NotValidIndexException;     // look for the i-th element. throw an exception if not found.
-
-    boolean contains(double value);                         // return true if the array contains input value.
-
-    boolean equals(NumList otherList);                      // return true if the otherList equals the other list.
-
-    void removeDuplicates();                                // remove duplicates of any elements in the list.
-
-    String toString();                                      // convert the list to a String.
-
-    boolean isSorted();                                     // return if the NumList is sorted in increasing order.
-
-    void reverse();                                         // reverse the elements of the lists.
-
-    static NumList union(NumList List1, NumList List2){return new NumLinkedList();} // union two sorted lists and return the head of union list. The union list would satisfy isSorted()
-}
-
-public class NumLinkedList implements NumList {
+public class NumLinkedList {
     // attributes of linked list
     private final int capacity = Integer.MAX_VALUE;
     private int elements = 0;
@@ -219,11 +193,11 @@ public class NumLinkedList implements NumList {
             dummyHead.next = head;
             head.previous = dummyHead;
             dummyTail.previous = tail;
-            tail.next = dummyTail;
+            if (tail != null) tail.next = dummyTail;
         }
     }
 
-    public static NumLinkedList union(NumList list1, NumList list2) {
+    static <T extends NumList> NumLinkedList union(NumLinkedList list1, NumLinkedList list2) {
         NumLinkedList list = new NumLinkedList();
         int i = 0, j = 0;
         try {
