@@ -118,7 +118,7 @@ public class NumLinkedListTest {
         NumLinkedList otherList0 = new NumLinkedList();
         NumLinkedList otherList1 = new NumLinkedList(1);
         // zero test
-        assertTrue(testArray.equals(otherList0));
+        assertEquals(true,testArray.equals(otherList0));
         otherList0.add(3.0);
         // condition test: size not match
         assertFalse(testArray.equals(otherList0));
@@ -212,19 +212,24 @@ public class NumLinkedListTest {
         test3.add(7.0);
         test3.reverse();
         assertEquals("7.0 3.0 4.0 5.0 6.0 ", test3.toString());
+        test3.add(8.0);
+        test3.add(9.0);
+        test3.add(10.0);
+        test3.reverse();
+        assertEquals("10.0 9.0 8.0 6.0 5.0 4.0 3.0 7.0 ", test3.toString());
     }
 
     @Test
     public void testUnion(){
         NumLinkedList test1 = new NumLinkedList();
         NumLinkedList test2 = new NumLinkedList();
-        NumLinkedList test3 = NumLinkedList.union(test1, test2);
+        NumLinkedList test3 = NumList.union(test1, test2);
         // zero test
         assertEquals("", test3.toString());
         test1.add(3.0);
         test2.add(2.0);
         // one test
-        test3 = NumLinkedList.union(test1, test2);
+        test3 = NumList.union(test1, test2);
         assertEquals("2.0 3.0 ", test3.toString());
         // normal test
         test1.add(5.0);
@@ -233,10 +238,10 @@ public class NumLinkedListTest {
         test2.add(4.0);
         test2.add(5.0);
         // normal test for sorted
-        test3 = NumLinkedList.union(test1, test2);
+        test3 = NumList.union(test1, test2);
         assertEquals("2.0 3.0 4.0 5.0 5.0 7.0 8.0 ", test3.toString());
         test1.add(4.0);
-        test3 = NumLinkedList.union(test1, test2);
+        test3 = NumList.union(test1, test2);
         assertEquals("3.0 2.0 5.0 4.0 7.0 5.0 8.0 4.0 ", test3.toString());
     }
 }

@@ -1,12 +1,14 @@
 import java.util.Objects;
 
 
-
-public class NumLinkedList {
+public class NumLinkedList implements NumList{
     // attributes of linked list
     private final int capacity = Integer.MAX_VALUE;
     private int elements = 0;
-    // dummy head that used to avoid empty linked list.
+    /**
+     * dummy head that used to avoid empty linked list. Every node thus have a previous
+     * node and a next node.
+     */
     private LLNode dummyHead = new LLNode(null);
     private LLNode dummyTail = new LLNode(null);
 

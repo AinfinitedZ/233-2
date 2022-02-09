@@ -2,6 +2,8 @@
 
 2/7 8:10
 
+Began working on NumLinkedList.
+
 finish size(), capacity(), add(), insert(), remove(), contains()
 
 2/7 8:27
@@ -60,9 +62,25 @@ Finish test removeDuplicates(). Begin working on numArrayLists.
 
 <hr></hr>
 
+2/9 13:58
 
+Seperate the NumList interface into single file. Declaring the parameter that static union() method could use by generic type. 
 
+2/9 14:16
 
+Reuse NumLinkedListTest on NumArrayList. Finish coding isSorted() and testing isSorted() successfully. 
+
+2/9 14:32
+
+Finish coding reverse() and testing reverse() successfully. 
+
+2/9 15:11
+
+Placing the union() method into NumList by declaring it as a static method. Testing on NumArrayList and NumLinkedList finish successfully.
+
+90% complete
+
+<hr></hr>
 
 
 

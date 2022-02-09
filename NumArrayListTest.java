@@ -180,4 +180,79 @@ public class NumArrayListTest {
         // normal test
         assertEquals("1.0 3.0 5.0 ", testArray.toString());
     }
+    @Test
+    public void testIsSorted(){
+        NumArrayList test = new NumArrayList();
+        // zero test
+        assertTrue(test.isSorted());
+        test.add(1.0);
+        // one test
+        assertTrue(test.isSorted());
+        test.add(3.0);
+        // normal test
+        assertTrue(test.isSorted());
+        test.add(2.0);
+        // normal test
+        assertFalse(test.isSorted());
+    }
+
+    @Test
+    public void testReverse(){
+        NumArrayList test = new NumArrayList();
+        NumArrayList test2 = new NumArrayList();
+        NumArrayList test3 = new NumArrayList();
+        // zero test
+        test.reverse();
+        assertEquals("", test.toString());
+        test.add(3.0);
+        // one test
+        test.reverse();
+        assertEquals("3.0 ", test.toString());
+        test2.add(4.0);
+        test2.add(5.0);
+        test2.add(6.0);
+        // one round test.
+        test2.reverse();
+        assertEquals("6.0 5.0 4.0 ", test2.toString());
+        test3.add(3.0);
+        test3.add(4.0);
+        test3.add(5.0);
+        test3.add(6.0);
+        test3.reverse();
+        assertEquals("6.0 5.0 4.0 3.0 ", test3.toString());
+        test3.add(7.0);
+        test3.reverse();
+        assertEquals("7.0 3.0 4.0 5.0 6.0 ", test3.toString());
+        test3.add(8.0);
+        test3.add(9.0);
+        test3.add(10.0);
+        test3.reverse();
+        assertEquals("10.0 9.0 8.0 6.0 5.0 4.0 3.0 7.0 ", test3.toString());
+    }
+
+    @Test
+    public void testUnion(){
+        NumArrayList test1 = new NumArrayList();
+        NumArrayList test2 = new NumArrayList();
+        NumArrayList test3 = NumList.union(test1, test2);
+        // zero test
+        assertEquals("", test3.toString());
+        test1.add(3.0);
+        test2.add(2.0);
+        // one test
+        test3 = NumList.union(test1, test2);
+        assertEquals("2.0 3.0 ", test3.toString());
+        // normal test
+        test1.add(5.0);
+        test1.add(7.0);
+        test1.add(8.0);
+        test2.add(4.0);
+        test2.add(5.0);
+        // normal test for sorted
+        test3 = NumList.union(test1, test2);
+        assertEquals("2.0 3.0 4.0 5.0 5.0 7.0 8.0 ", test3.toString());
+        test1.add(4.0);
+        test3 = NumList.union(test1, test2);
+        assertEquals("3.0 2.0 5.0 4.0 7.0 5.0 8.0 4.0 ", test3.toString());
+    }
 }

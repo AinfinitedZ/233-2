@@ -239,10 +239,28 @@ public class NumArrayList implements NumList{
     }
 
     public boolean isSorted(){
+        if(this.size() > 1){
+            for(int i = 0; i < this.size() - 1; i++){
+                try {
+                    if(this.lookup(i) > this.lookup(i + 1)) return false;
+                } catch (NotValidIndexException e) {
+                    System.out.println("This index is not valid.");
+                }
+
+            }
+        }
         return true;
     }
 
     public void reverse(){
-
+        int j = this.size() - 1;
+        Double temp;
+        for(int i = 0; i < this.size() / 2; i++){
+            temp = array[j];
+            array[j] = array[i];
+            array[i] = temp;
+            j--;
+        }
     }
+
 }
