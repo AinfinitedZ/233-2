@@ -92,11 +92,9 @@ Modifing the union() method. Now the union() method is able to remove duplicate.
 
 Modifing the insert() method. Now the insert() method could correctly handle the situation that insert element to 0 position. 
 
+2/9 21:50
 
-
-
-
-
+Simplify the insert() and remove() method. By pointing pointer to dummyHead directly, there is no need for extra situations. 
 
 
 
