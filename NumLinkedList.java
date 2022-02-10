@@ -31,7 +31,7 @@ public class NumLinkedList implements NumList{
     }
 
     /**
-     * Initialzing the <code>NumLinkedList</code>. would potential invoke by add() method
+     * Initializing the <code>NumLinkedList</code>. would potentially invoke by add() method
      * to avoid NullPointerException. 
      * @param value value passed by add() method.
      */
@@ -78,8 +78,9 @@ public class NumLinkedList implements NumList{
             elements++;
         }
     }
+
     /**
-     * insert a element at specific i-th position (i start from 0). Append it to the end
+     * insert an element at specific i-th position (i start from 0). Append it to the end
      * if <code>i</code> is larger than elements of list.
      * @param i position (start from 0)
      * @param value element to be inserted or appended. 
@@ -193,14 +194,14 @@ public class NumLinkedList implements NumList{
 
     public boolean isSorted() {
         if (this.size() != 0) {
-            LLNode ptr = dummyHead.getNext();
-            LLNode ptrNext = dummyHead.getNext().getNext();
-            for (int i = 0; i < this.size() - 1; i++) {
-                if (ptr.getValue() > ptrNext.getValue()) {
+            LLNode ptr = dummyHead.next;
+            LLNode ptrNext = dummyHead.next.next;
+            for(int i = 0; i < this.size() - 1; i++){
+                if (ptr.value > ptrNext.value) {
                     return false;
                 }
-                ptr = ptr.getNext();
-                ptrNext = ptrNext.getNext();
+                ptr = ptr.next;
+                ptrNext = ptrNext.next;
             }
         }
         return true;
