@@ -51,8 +51,8 @@ public class NumLinkedListTest {
         assertEquals("3.0 5.0 ", testArray1.toString());
         testArray1.insert(1, 8.0);
         assertEquals("3.0 8.0 5.0 ", testArray1.toString());
-        testArray1.insert(0, 3.0);
-        assertEquals("3.0 3.0 8.0 5.0 ", testArray1.toString());
+        testArray1.insert(0, 1.0);
+        assertEquals("1.0 3.0 8.0 5.0 ", testArray1.toString());
     }
 
     @Test
@@ -259,6 +259,6 @@ public class NumLinkedListTest {
         // test2: 2.0 -> 4.0 -> 5.0
         // test4: [1.0 3.0 5.0]
         NumList test6 = NumList.union(test2, test4);
-        assertEquals("1.0 2.0 3.0 4.0 5.0", test6.toString());
+        assertEquals("1.0 2.0 3.0 4.0 5.0 ", test6.toString());
     }
 }
