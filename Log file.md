@@ -96,9 +96,13 @@ Modifing the insert() method. Now the insert() method could correctly handle the
 
 Simplify the insert() and remove() method. By pointing pointer to dummyHead directly, there is no need for extra situations. 
 
+2/9 23:30
 
+Finish commenting on NumLinkedList and NumArrayList.
 
+2/10 14:45
 
+Finish commenting on NumLinkedListTest and improve comments. 
 
 
 

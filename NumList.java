@@ -18,7 +18,8 @@ public interface NumList {
     void reverse();                                         // reverse the elements of the lists.
     /**
      *  union two sorted lists and return the head of union list. Two passed sorted Lists would produce a sorted return list. 
-     *  Two passed unsorted lists would produce a unsorted but combined list. 
+     *  Two passed unsorted lists would produce an unsorted but combined list. By default, the returned list would have the
+     *  same type that list1 have.
      */ 
     public static <T extends NumList> T union(T list1, T list2){
         Class cla = list1.getClass();

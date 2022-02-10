@@ -20,7 +20,11 @@
  * <dt><code>testArray.equals({1.0, 3.0, 5.0})</code> would return <code>false</code>.</dt>
  * <dt><code>testArray.removeDuplicate()</code> would result {1.0, 3.0, 5.0, 7.0, 9.0}.</dt>
  * <dt><code>testArray.toString()</code> would return "1.0 3.0 5.0 7.0 3.0 9.0 ";</dt>
+ * <dt><code>testList.isSorted()</code> would return false. A NumList that consist of {1.0 3.0 5.0 7.0}
+ * would return true after invoking isSorted()</dt>
+ * <dt><code>testList.reverse()</code> would return {9.0 3.0 7.0 5.0 3.0 1.0}</dt>
  * </dl>
+ * @author dxl746
  */
 public class NumArrayList implements NumList{
     // variable that store the capacity of array. 
@@ -145,7 +149,7 @@ public class NumArrayList implements NumList{
     /** 
      * Determining whether <code>value</code> exist in array. Return <code>true</code> if exists.
      * @param value value that passed to function
-     * @return ValueExist
+     * @return isValueExist
      */
     public boolean contains(double value){
         for(int i = 0; i < this.size(); i++){
@@ -238,6 +242,10 @@ public class NumArrayList implements NumList{
         return result.toString();
     }
 
+    /**
+     * Indicating whether this NumArrayList is sorted by increasing order.
+     * @return <code>true</code> if this NumArrayList is sorted by increasing order. <code>false</code> otherwise.
+     */
     public boolean isSorted(){
         if(this.size() > 1){
             for(int i = 0; i < this.size() - 1; i++){
@@ -252,6 +260,9 @@ public class NumArrayList implements NumList{
         return true;
     }
 
+    /**
+     * Reverse the order of elements in NumList by swapping their previous element and next element.
+     */
     public void reverse(){
         int j = this.size() - 1;
         Double temp;
