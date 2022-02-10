@@ -86,15 +86,24 @@ public class NumLinkedList implements NumList{
     public void insert(int i, double value) {
         LLNode ptr = dummyHead.getNext();
         if (i < this.size()) {
-            for (int j = 0; j < i - 1; j++) {
-                ptr = ptr.getNext();
+            if(i == 0){
+                LLNode newNode = new LLNode(value);
+                newNode.previous = dummyHead;
+                newNode.next = ptr;
+                dummyHead.next = newNode;
+                ptr.previous = newNode;
+                elements++;
+            } else {
+                for (int j = 0; j < i - 1; j++) {
+                    ptr = ptr.getNext();
+                }
+                LLNode newNode = new LLNode(value);
+                newNode.setPrevious(ptr);
+                newNode.setNext(ptr.getNext());
+                ptr.getNext().setPrevious(newNode);
+                ptr.setNext(newNode);
+                elements++;
             }
-            LLNode newNode = new LLNode(value);
-            newNode.setPrevious(ptr);
-            newNode.setNext(ptr.getNext());
-            ptr.getNext().setPrevious(newNode);
-            ptr.setNext(newNode);
-            elements++;
         } else {
             this.add(value);
         }
