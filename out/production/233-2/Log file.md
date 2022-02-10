@@ -78,9 +78,15 @@ Finish coding reverse() and testing reverse() successfully.
 
 Placing the union() method into NumList by declaring it as a static method. Testing on NumArrayList and NumLinkedList finish successfully.
 
+TODO: comment on NumLinkedList and NumArrayList.
+
 90% complete
 
 <hr></hr>
+
+2/9 19:34
+
+Modifing the union() method. Now the union() method is able to remove duplicate.
 
 
 

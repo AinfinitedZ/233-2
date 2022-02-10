@@ -224,6 +224,7 @@ public class NumLinkedListTest {
         NumLinkedList test1 = new NumLinkedList();
         NumLinkedList test2 = new NumLinkedList();
         NumLinkedList test3 = NumList.union(test1, test2);
+        NumArrayList test4 = new NumArrayList();
         // zero test
         assertEquals("", test3.toString());
         test1.add(3.0);
@@ -239,10 +240,23 @@ public class NumLinkedListTest {
         test2.add(5.0);
         // normal test for sorted
         test3 = NumList.union(test1, test2);
-        assertEquals("2.0 3.0 4.0 5.0 5.0 7.0 8.0 ", test3.toString());
+        assertEquals("2.0 3.0 4.0 5.0 7.0 8.0 ", test3.toString());
         test1.add(4.0);
         // normal test for unsorted
         test3 = NumList.union(test1, test2);
-        assertEquals("3.0 2.0 5.0 4.0 7.0 5.0 8.0 4.0 ", test3.toString());
+        assertEquals("3.0 2.0 5.0 4.0 7.0 8.0 ", test3.toString());
+        test4.add(1.0);
+        test4.add(3.0);
+        test4.add(5.0);
+        // normal test for unsorted arrayList and LinkedList
+        // test3: 3.0 -> 1.0 -> 2.0 -> 5.0 -> 4.0 -> 7.0 -> 8.0
+        // test4: [1.0 3.0 5.0]
+        NumList test5 = NumList.union(test3, test4);
+        assertEquals("3.0 1.0 2.0 5.0 4.0 7.0 8.0 ", test5.toString());
+        // normal test for sorted LinkedList and arrayList.
+        // test2: 2.0 -> 4.0 -> 5.0
+        // test4: [1.0 3.0 5.0]
+        NumList test6 = NumList.union(test2, test4);
+        assertEquals("1.0 2.0 3.0 4.0 5.0", test6.toString());
     }
 }

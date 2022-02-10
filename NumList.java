@@ -1,5 +1,3 @@
-import java.lang.reflect.Constructor;
-
 /**
  * Interface <code>NumList</code> contains all abstract methods that must be inherited in
  * <code>NumArrayList</code> and <code>NumLinkedList</code>
@@ -56,6 +54,7 @@ public interface NumList {
                             j++;
                         }
                     }
+                    list.removeDuplicates();
                 }
             } else {
                 if (list1.size() != 0 && list2.size() != 0) {
@@ -76,6 +75,7 @@ public interface NumList {
                             j++;
                         }
                     }
+                    list.removeDuplicates();
                 }
             }
         } catch (NotValidIndexException e) {

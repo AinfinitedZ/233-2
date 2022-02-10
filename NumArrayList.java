@@ -262,5 +262,4 @@ public class NumArrayList implements NumList{
             j--;
         }
     }
-
 }
