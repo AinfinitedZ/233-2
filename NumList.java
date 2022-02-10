@@ -18,8 +18,11 @@ public interface NumList {
     String toString();                                      // convert the list to a String.
     boolean isSorted();                                     // return if the NumList is sorted in increasing order.
     void reverse();                                         // reverse the elements of the lists.
-    // union two sorted lists and return the head of union list. The union list would satisfy isSorted()
-    static <T extends NumList> T union(T list1, T list2){
+    /**
+     *  union two sorted lists and return the head of union list. Two passed sorted Lists would produce a sorted return list. 
+     *  Two passed unsorted lists would produce a unsorted but combined list. 
+     */ 
+    public static <T extends NumList> T union(T list1, T list2){
         Class cla = list1.getClass();
         T list = null;
         try {

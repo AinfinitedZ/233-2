@@ -12,16 +12,28 @@ public class NumLinkedList implements NumList{
     private LLNode dummyHead = new LLNode(null);
     private LLNode dummyTail = new LLNode(null);
 
+    /**
+     * Create a NumLinkedList that initialized with two dummyNodes. 
+     */
     public NumLinkedList() {
         dummyHead.setNext(dummyTail);
         dummyTail.setPrevious(dummyHead);
     }
-
+    /**
+     * same constructor as <code>NumLinkedList()</code>. Could reuse test of NumArrayList
+     * after declaring this Constructor.
+     * @param capacity value that doesn't necessary.
+     */
     public NumLinkedList(int capacity) {
         dummyHead.setNext(dummyTail);
         dummyTail.setPrevious(dummyHead);
     }
 
+    /**
+     * Initialzing the <code>NumLinkedList</code>. would potential invoke by add() method
+     * to avoid NullPointerException. 
+     * @param value value passed by add() method.
+     */
     private void addIfNull(double value) {
         if (elements == 0) {
             LLNode newNode = new LLNode(value);
@@ -32,15 +44,27 @@ public class NumLinkedList implements NumList{
             elements++;
         }
     }
-
+    /**
+     * return the total numbers of elements in NumLinkedList
+     * @return the total numbers of elements
+     */
     public int size() {
         return this.elements;
     }
 
+    /**
+     * return the capacity of NumLinkedList. Since the NumLinkedList is dynamic data type, 
+     * the capacity would just be declared as <code>final</code> variable.
+     * @return Integer.MAX_VALUE
+     */
     public int capacity() {
         return this.capacity;
     }
 
+    /**
+     * append the specified element to the end of the NumLinkedList.
+     * @param value element to be appended
+     */
     public void add(double value) {
         if (this.size() == 0) {
             this.addIfNull(value);
@@ -53,7 +77,12 @@ public class NumLinkedList implements NumList{
             elements++;
         }
     }
-
+    /**
+     * insert a element at specific i-th position (i start from 0). Append it to the end
+     * if <code>i</code> is larger than elements of list.
+     * @param i position (start from 0)
+     * @param value element to be inserted or appended. 
+     */
     public void insert(int i, double value) {
         LLNode ptr = dummyHead.getNext();
         if (i < this.size()) {
@@ -70,7 +99,10 @@ public class NumLinkedList implements NumList{
             this.add(value);
         }
     }
-
+    
+    /**
+     * 
+     */
     public void remove(int i) {
         if (i == 0 && this.size() != 0) {
             dummyHead.setNext(dummyHead.getNext().getNext());
@@ -198,59 +230,4 @@ public class NumLinkedList implements NumList{
             if (tail != null) tail.next = dummyTail;
         }
     }
-
-    static <T extends NumList> NumLinkedList union(NumLinkedList list1, NumLinkedList list2) {
-        NumLinkedList list = new NumLinkedList();
-        int i = 0, j = 0;
-        try {
-            if (list1.isSorted() && list2.isSorted()) {
-                if (list1.size() != 0 && list2.size() != 0) {
-                    while (i < list1.size() && j < list2.size()) {
-                        if (list1.lookup(i) < list2.lookup(j)) {
-                            list.add(list1.lookup(i));
-                            i++;
-                        } else {
-                            list.add(list2.lookup(j));
-                            j++;
-                        }
-                    }
-                    if (i < list1.size()) {
-                        while (i != list1.size()) {
-                            list.add(list1.lookup(i));
-                            i++;
-                        }
-                    } else if (j < list2.size()) {
-                        while (j != list2.size()) {
-                            list.add(list2.lookup(j));
-                            j++;
-                        }
-                    }
-                }
-            } else {
-                if (list1.size() != 0 && list2.size() != 0) {
-                    while (i < list1.size() && j < list2.size()) {
-                        list.add(list1.lookup(i));
-                        list.add(list2.lookup(j));
-                        i++;
-                        j++;
-                    }
-                    if (i < list1.size()) {
-                        while (i != list1.size()) {
-                            list.add(list1.lookup(i));
-                            i++;
-                        }
-                    } else if (j < list2.size()) {
-                        while (j != list2.size()) {
-                            list.add(list2.lookup(j));
-                            j++;
-                        }
-                    }
-                }
-            }
-        } catch (NotValidIndexException e) {
-            System.out.println("This index is not valid");
-        }
-        return list;
-    }
-
 }

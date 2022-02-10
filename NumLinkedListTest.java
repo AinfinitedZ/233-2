@@ -241,6 +241,7 @@ public class NumLinkedListTest {
         test3 = NumList.union(test1, test2);
         assertEquals("2.0 3.0 4.0 5.0 5.0 7.0 8.0 ", test3.toString());
         test1.add(4.0);
+        // normal test for unsorted
         test3 = NumList.union(test1, test2);
         assertEquals("3.0 2.0 5.0 4.0 7.0 5.0 8.0 4.0 ", test3.toString());
     }
