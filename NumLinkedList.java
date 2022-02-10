@@ -242,7 +242,7 @@ public class NumLinkedList implements NumList{
      * @return <code>true</code> if this NumLinkedList is sorted by increasing order. <code>false</code> otherwise.
      */
     public boolean isSorted() {
-        if (this.size() != 0) {
+        if (this.size() > 1) {
             LLNode ptr = dummyHead.next;
             LLNode ptrNext = dummyHead.next.next;
             for(int i = 0; i < this.size() - 1; i++){
@@ -266,7 +266,7 @@ public class NumLinkedList implements NumList{
             LLNode curr = dummyHead.next;
             LLNode tail = dummyHead.next;
             LLNode head = dummyTail.previous;
-            while (curr != null) {
+            while (curr.next != null) {
                 temp = curr.next;
                 curr.next = prev;
                 curr.previous = temp;
@@ -276,7 +276,7 @@ public class NumLinkedList implements NumList{
             dummyHead.next = head;
             head.previous = dummyHead;
             dummyTail.previous = tail;
-            if (tail != null) tail.next = dummyTail;
+            tail.next = dummyTail;
         }
     }
 }

@@ -104,5 +104,9 @@ Finish commenting on NumLinkedList and NumArrayList.
 
 Finish commenting on NumLinkedListTest and improve comments. 
 
+2/10 17:39
 
+Improve union() method. Now it accept  empty NumList as input. 
+
+Fixing bug that count dummyTail as a node. 
 

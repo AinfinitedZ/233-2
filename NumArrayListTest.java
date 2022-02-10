@@ -7,6 +7,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * testunion() is already tested in NumLinkedListTest. Since union() is a static generic method, it should apply
+ * for each type that implements NumList interface.
+ */
 public class NumArrayListTest {
     // a relative small number for assertequals(double, double, DELTA) method in JUnit test.
     private static final double DELTA = 1E-15;
@@ -152,7 +156,7 @@ public class NumArrayListTest {
     }
 
     @Test
-    public void removeDuplicates() throws NotValidIndexException {
+    public void removeDuplicates() {
         NumArrayList testArray = new NumArrayList(6);
         testArray.add(1.0);
         testArray.add(3.0);
@@ -228,31 +232,5 @@ public class NumArrayListTest {
         test3.add(10.0);
         test3.reverse();
         assertEquals("10.0 9.0 8.0 6.0 5.0 4.0 3.0 7.0 ", test3.toString());
-    }
-
-    @Test
-    public void testUnion(){
-        NumArrayList test1 = new NumArrayList();
-        NumArrayList test2 = new NumArrayList();
-        NumArrayList test3 = NumList.union(test1, test2);
-        // zero test
-        assertEquals("", test3.toString());
-        test1.add(3.0);
-        test2.add(2.0);
-        // one test
-        test3 = NumList.union(test1, test2);
-        assertEquals("2.0 3.0 ", test3.toString());
-        // normal test
-        test1.add(5.0);
-        test1.add(7.0);
-        test1.add(8.0);
-        test2.add(4.0);
-        test2.add(5.0);
-        // normal test for sorted
-        test3 = NumList.union(test1, test2);
-        assertEquals("2.0 3.0 4.0 5.0 5.0 7.0 8.0 ", test3.toString());
-        test1.add(4.0);
-        test3 = NumList.union(test1, test2);
-        assertEquals("3.0 2.0 5.0 4.0 7.0 5.0 8.0 4.0 ", test3.toString());
     }
 }

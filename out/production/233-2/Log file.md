@@ -100,7 +100,13 @@ Simplify the insert() and remove() method. By pointing pointer to dummyHead dire
 
 Finish commenting on NumLinkedList and NumArrayList.
 
+2/10 14:45
 
+Finish commenting on NumLinkedListTest and improve comments. 
 
+2/10 17:39
 
+Improve union() method. Now it accept  empty NumList as input. 
+
+Fixing bug that count dummyTail as a node. 
 

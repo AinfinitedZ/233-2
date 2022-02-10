@@ -107,8 +107,15 @@ public class NumArrayList implements NumList{
      * @param value value passed to function
      */
     public void insert(int i, double value){
-        if(this.size() < this.capacity()){
-            if(this.size() >= i){
+        if(this.size() <= this.capacity()){
+            if(i == 0){
+                Double[] arrayNew = new Double[capacity+1];
+                System.arraycopy(array, 0, arrayNew, 1, this.size());
+                arrayNew[0] = value;
+                this.array = arrayNew;
+                elements++;
+            }
+            else if(this.size() >= i){
                 if (this.size() - i >= 0) System.arraycopy(array, i, array, i + 1, this.size() - i);
                 array[i] = value;
                 elements++;
@@ -212,14 +219,18 @@ public class NumArrayList implements NumList{
      * Remove duplicates of elements in array. An element 'A' is said duplicate if another element exists
      * in array that equal to A, but has lower index.
      */
-    public void removeDuplicates() throws NotValidIndexException {
+    public void removeDuplicates() {
         NumArrayList newArray = new NumArrayList();
         for(int i = 0; i < this.size() - 1; i++){
 			for(int j = i + 1; j < this.size(); j++){
-				if(this.lookup(i) == this.lookup(j)){
-					this.remove(j);
-				}
-			}
+                try {
+                    if(this.lookup(i) == this.lookup(j)){
+                        this.remove(j);
+                    }
+                } catch (NotValidIndexException e) {
+                    e.printStackTrace();
+                }
+            }
 			newArray.add(array[i]);
         }
     }

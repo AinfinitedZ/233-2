@@ -21,20 +21,18 @@ public interface NumList {
      *  Two passed unsorted lists would produce an unsorted but combined list. By default, the returned list would have the
      *  same type that list1 have.
      */ 
-    public static <T extends NumList> T union(T list1, T list2){
+    static <T extends NumList> T union(T list1, T list2){
         Class cla = list1.getClass();
         T list = null;
         try {
             list = (T)cla.newInstance();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+        } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
         int i = 0, j = 0;
         try {
             if (list1.isSorted() && list2.isSorted()) {
-                if (list1.size() != 0 && list2.size() != 0) {
+                if (list1.size() != 0 || list2.size() != 0) {
                     while (i < list1.size() && j < list2.size()) {
                         if (list1.lookup(i) < list2.lookup(j)) {
                             list.add(list1.lookup(i));
@@ -49,38 +47,40 @@ public interface NumList {
                             list.add(list1.lookup(i));
                             i++;
                         }
-                    } else if (j < list2.size()) {
+                    }
+                    if (j < list2.size()) {
                         while (j != list2.size()) {
                             list.add(list2.lookup(j));
                             j++;
                         }
                     }
                     list.removeDuplicates();
-                }
-            } else {
-                if (list1.size() != 0 && list2.size() != 0) {
-                    while (i < list1.size() && j < list2.size()) {
-                        list.add(list1.lookup(i));
-                        list.add(list2.lookup(j));
-                        i++;
-                        j++;
                     }
-                    if (i < list1.size()) {
-                        while (i != list1.size()) {
+                } else {
+                    if (list1.size() != 0 || list2.size() != 0) {
+                        while (i < list1.size() && j < list2.size()) {
                             list.add(list1.lookup(i));
-                            i++;
-                        }
-                    } else if (j < list2.size()) {
-                        while (j != list2.size()) {
                             list.add(list2.lookup(j));
+                            i++;
                             j++;
                         }
+                        if (i < list1.size()) {
+                            while (i != list1.size()) {
+                                list.add(list1.lookup(i));
+                                i++;
+                            }
+                        }
+                        if (j < list2.size()) {
+                            while (j != list2.size()) {
+                                list.add(list2.lookup(j));
+                                j++;
+                            }
+                        }
+                        list.removeDuplicates();
                     }
-                    list.removeDuplicates();
                 }
-            }
         } catch (NotValidIndexException e) {
-            System.out.println("This index is not valid");
+            e.printStackTrace();
         }
         return list;
     }
